@@ -14,11 +14,10 @@
 
 ### Credits:
 
-Phaser 3
-Zenya Academy
-Codecademy
-Artwork by Bakudas and Gabe Fern
-Versão ALPHA release v0.3
-Sound effects: 'http://superpowers-html5.com/''
-Template: PhotonStorm
-An amazing soundtrack composed by 'https://twitter.com/itsarfo'
+#### Phaser.io 
+#### Zenya Academy
+#### Codecademy
+#### Artwork by Bakudas and Gabe Fern
+#### Sound effects by 'http://superpowers-html5.com/''
+#### Template written by PhotonStorm
+#### Soundtrack composed by 'https://twitter.com/itsarfo'

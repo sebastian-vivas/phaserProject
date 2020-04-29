@@ -4,13 +4,11 @@ import Portal from '../Sprites/Portal';
 import ReturnPortal from '../Sprites/ReturnPortal';
 import Coins from '../Groups/Coins';
 import OldMan from '../Sprites/OldMan';
-// import Vendor from '../Sprites/Vendor';
 import FisherMan from '../Sprites/FisherMan';
 import Bee from '../Sprites/Bee';
 import FoodVendor from '../Sprites/FoodVendor';
 import Friend from '../Sprites/Friend';
 import Star from '../Sprites/Star';
-
 
 export default class GameScene extends Phaser.Scene {
   constructor (key) {
@@ -26,8 +24,7 @@ export default class GameScene extends Phaser.Scene {
   };
 
   create () {
-    // const getItemAudio = this.sound.add('getItemAudio', {loop: false, volume: .5});
-
+    const getItemAudio = this.sound.add('getItemAudio', {loop: false, volume: .5});
     this.createMap();
     this.createPlayer();
     this.addCollisions();
@@ -37,7 +34,6 @@ export default class GameScene extends Phaser.Scene {
     this.createOldMan();
     this.createImages();
     this.createPages();
-    // this.createVendor();
     this.createFisherMan();
     this.createBee();
     this.createFoodVendor();
@@ -45,9 +41,8 @@ export default class GameScene extends Phaser.Scene {
     this.createStar();
     this.overlap();
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.physics.add.overlap(this.coinsGroup, this.player, this.coinsGroup.collectCoin.bind(this.coinsGroup));
-};
-    // , function(player, coin) {getItemAudio.play()});
+    this.physics.add.overlap(this.coinsGroup, this.player, this.coinsGroup.collectCoin.bind(this.coinsGroup), function(player, coin) {getItemAudio.play();});
+  };
 
   createPlayer() {
     this.map.findObject('Player', (obj) => {
@@ -122,34 +117,30 @@ export default class GameScene extends Phaser.Scene {
       this.physics.add.overlap(this.player, this.pageOne, function(player, pageOne) { pageOne.destroy(); });
     });
 
-    // this.gameScene.events.on('vendorDialogue', () => {
-    // this.helloBubble = this.physics.add.image(480, 240, 'helloBubble').setScale(1);
-    // });
-
     this.gameScene.events.on('fisherManDialogue', () => {
-    this.pageTwo = this.physics.add.image(480, 240, 'pageTwo').setScale(1);
+    this.pageTwo = this.physics.add.image(480, 246, 'pageTwo').setScale(1);
     this.physics.add.overlap(this.player, this.pageTwo, function(player, pageTwo) { pageTwo.destroy(); });
     });
 
     this.gameScene.events.on('beeDialogue', () => {
-    this.pageThree = this.physics.add.image(480, 240, 'pageThree').setScale(1);
+    this.pageThree = this.physics.add.image(480, 246, 'pageThree').setScale(1);
     this.physics.add.overlap(this.player, this.pageThree, function(player, pageThree) { pageThree.destroy(); });
     });
 
     this.gameScene.events.on('foodVendorDialogue', () => {
-    this.pageFour = this.physics.add.image(480, 240, 'pageFour').setScale(1);
+    this.pageFour = this.physics.add.image(480, 246, 'pageFour').setScale(1);
     this.physics.add.overlap(this.player, this.pageFour, function(player, pageFour) { pageFour.destroy(); });
     });
 
     this.gameScene.events.on('friendDialogue', () => {
-    this.pageFive = this.physics.add.image(480, 240, 'pageFive').setScale(1);
+    this.pageFive = this.physics.add.image(480, 246, 'pageFive').setScale(1);
     this.physics.add.overlap(this.player, this.pageFive, function(player, pageFive) { pageFive.destroy(); });
     });
 
     this.gameScene.events.on('starDialogue', () => {
     this.pageSix = this.physics.add.image(480, 240, 'pageSix').setScale(1);
     this.scene.pause();
-    })
+  });
   };
 
   update () {
@@ -159,7 +150,7 @@ export default class GameScene extends Phaser.Scene {
   createImages (){
     this.add.image(80, 25, 'ui').setScale(1.3);
     this.add.image(28.35, 24, 'coin').setScale(1.6);
-  }
+  };
 
   addCollisions () {
     this.physics.add.collider(this.player, this.blockedLayer);
@@ -189,14 +180,15 @@ export default class GameScene extends Phaser.Scene {
   };
 
   overlap(){
-    this.physics.add.overlap(this.player, this.portal, this.loadNextLevel.bind(this));
-    this.physics.add.overlap(this.player, this.returnPortal, this.returnToLevel.bind(this));
+    const pageFlip = this.sound.add('pageFlip', {rate: 1.2});
+    const victory = this.sound.add('victory', {rate: 2});
+    this.physics.add.overlap(this.player, this.portal, function(player, portal){ pageFlip.play(); }, this.loadNextLevel.bind(this));
+    this.physics.add.overlap(this.player, this.returnPortal, this.returnToLevel.bind(this), function(player, portal){ pageFlip.play(); });
     this.physics.add.overlap(this.player, this.oldMan, this.oldMan.talkToOldMan.bind(this.oldMan));
-    // this.physics.add.overlap(this.player, this.vendor, this.vendor.talkToVendor.bind(this.vendor));
     this.physics.add.overlap(this.player, this.fisherMan, this.fisherMan.talkToFisherMan.bind(this.fisherMan));
     this.physics.add.overlap(this.player, this.bee, this.bee.talkToBee.bind(this.bee));
     this.physics.add.overlap(this.player, this.foodVendor, this.foodVendor.talkToFoodVendor.bind(this.foodVendor));
     this.physics.add.overlap(this.player, this.friend, this.friend.talkToFriend.bind(this.friend));
-    this.physics.add.overlap(this.player, this.star, this.star.talkToStar.bind(this.star));
-  }
-};
+    this.physics.add.overlap(this.player, this.star, this.star.talkToStar.bind(this.star), function(player, star){ victory.play();});
+  };
+  };

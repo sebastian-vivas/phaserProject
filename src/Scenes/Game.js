@@ -180,10 +180,9 @@ export default class GameScene extends Phaser.Scene {
   };
 
   overlap(){
-    const pageFlip = this.sound.add('pageFlip', {rate: 1.2});
     const victory = this.sound.add('victory', {rate: 2});
-    this.physics.add.overlap(this.player, this.portal, function(player, portal){ pageFlip.play(); }, this.loadNextLevel.bind(this));
-    this.physics.add.overlap(this.player, this.returnPortal, this.returnToLevel.bind(this), function(player, portal){ pageFlip.play(); });
+    this.physics.add.overlap(this.player, this.portal, this.loadNextLevel.bind(this));
+    this.physics.add.overlap(this.player, this.returnPortal, this.returnToLevel.bind(this));
     this.physics.add.overlap(this.player, this.oldMan, this.oldMan.talkToOldMan.bind(this.oldMan));
     this.physics.add.overlap(this.player, this.fisherMan, this.fisherMan.talkToFisherMan.bind(this.fisherMan));
     this.physics.add.overlap(this.player, this.bee, this.bee.talkToBee.bind(this.bee));

@@ -28,7 +28,6 @@ export default class BootScene extends Phaser.Scene {
     this.load.image('pageFive', 'src/assets/images/pageFive.png');
     this.load.image('pageSix', 'src/assets/images/pageSix.png');
     this.load.audio('getItemAudio', 'audio/9.ogg');
-    this.load.audio('pageFlip', 'audio/smallPage.mp3')
     this.load.audio('victory', 'audio/victory.wav')
     this.load.audio('chimes', 'audio/chippytoon.wav');
 };

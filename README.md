@@ -12,12 +12,10 @@
 | `npm start` | Build project and open web server running project |
 | `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
 
-### Credits:
+### Attribution:
 
-#### Phaser.io 
-#### Zenya Academy
-#### Codecademy
+#### PhotonStorm
 #### Artwork by Bakudas and Gabe Fern
-#### Sound effects by 'http://superpowers-html5.com/''
-#### Template written by PhotonStorm
-#### Soundtrack composed by 'https://twitter.com/itsarfo'
+#### Sound effects by 'http://superpowers-html5.com/'
+#### Victory! theme composed by Jon K Fite
+#### RPG/Town Music composed by BBandRage

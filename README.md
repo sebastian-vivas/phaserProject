@@ -2,11 +2,7 @@
 
 This is a simple game I made with Phaser 3 JS. 
 
-## Requirements
-
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
-
-## Available Commands
+## Get Started
 
 | Command | Description |
 |---------|-------------|

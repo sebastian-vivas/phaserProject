@@ -1,6 +1,6 @@
 # Phaser 3 Project
 
-This is a simple game I made with Phaser 3 JS. 
+This is a simple game I made with Phaser 3 JS
 
 ## Get Started
 

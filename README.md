@@ -1,6 +1,6 @@
 # Phaser 3 Project
 
-This is a simple game I made with Phaser 3 JS
+A simple JS game made with the Phaser 3 framework. This game is part of a concept for an children's literacy platform.
 
 ## Get Started
 
